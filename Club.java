@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 /**
  * Store details of club memberships.
  * 
@@ -54,5 +55,31 @@ public class Club
             System.out.println("El número introducido no pertenece a un mes.");
         }
         return cont;
+    }
+    
+    /** 
+     * Todos los socios que se han dado de alta un determinado mes de un determinado año se
+     * dan de baja. En caso de que el parametro month contenga un valor no valido se muestra 
+     * por pantalla el error.
+     * @param month El mes en el que estamos interesados
+     * @param year El año en el que estamos interesados
+     * @return Una coleccion con los socios que se han dado de baja del club
+     */
+    public ArrayList<Membership> purge(int month, int year){
+        ArrayList<Membership> bajas = new ArrayList<>();
+        if(month > 0 && month < 13){
+            Iterator<Membership> it = members.iterator();
+            while(it.hasNext()){
+                Membership member = it.next();
+                if(member.getMonth() == month && member.getYear() == year && member != null){
+                    bajas.add(member);
+                    it.remove();
+                }
+            }
+        }
+        else{
+            System.out.println("El número introducido no pertenece a un mes.");
+        }
+        return bajas;
     }
 }
