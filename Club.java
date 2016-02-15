@@ -53,6 +53,7 @@ public class Club
         }
         else{
             System.out.println("El número introducido no pertenece a un mes.");
+            cont = -1;
         }
         return cont;
     }
@@ -66,8 +67,9 @@ public class Club
      * @return Una coleccion con los socios que se han dado de baja del club
      */
     public ArrayList<Membership> purge(int month, int year){
-        ArrayList<Membership> bajas = new ArrayList<>();
+        ArrayList<Membership> bajas = null;
         if(month > 0 && month < 13){
+            bajas = new ArrayList<>();
             Iterator<Membership> it = members.iterator();
             while(it.hasNext()){
                 Membership member = it.next();
